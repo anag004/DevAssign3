@@ -11,7 +11,7 @@ LINE=$( cat $1 | grep $2 )
 # Exit if no such line is found
 if [[ !( $LINE ) ]]
 then 
-	exit 1
+	echo "Invalid username"
 fi
 
 OUT=$( echo $LINE | cut -d':' -f5 )

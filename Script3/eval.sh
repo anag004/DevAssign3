@@ -6,32 +6,44 @@ then
 	exit 1
 fi
 
-COUNTER=0
-CONTENTS=$( cat $1 )
+CONTENTS=$( cat "$1" )
 RESULT=0
-CURRENT=0
+NUMBER=0
+SYMBOL=0
 
-for command in $CONTENTS
+while read command
 do
-	if (( $COUNTER % 2 == 0 )) 
-	then
-		CURRENT=$command
-	else 
-		if [ $command == '+' ]
-		then
-			(( RESULT += CURRENT ))
-		elif [ $command == '-' ]
-		then
-			(( RESULT -= CURRENT ))
-		elif [ $command == '/' ]
+	# splits the number and symbol into two different lines
+	TEMP=$( echo "$command" | tr -s " " "\012" )
+	while read val 
+	do
+		if (( COUNTER % 2 == 0 ))
 		then 
-			(( RESULT /= CURRENT ))
+			NUMBER="$val"
 		else 
-			(( RESULT *= CURRENT ))
+			SYMBOL="$val"
 		fi
+		(( COUNTER++ ))
+	done <<< "$TEMP"
+
+	if [ "$SYMBOL" == "+" ]
+	then
+		(( RESULT += NUMBER ))
 	fi
-	(( COUNTER++ ))
-done
+	if [ "$SYMBOL" == "-" ]
+	then
+		(( RESULT -= NUMBER ))
+	fi
+	if [ "$SYMBOL" == "/" ]
+	then
+		(( RESULT /= NUMBER ))
+	fi
+	if [ "$SYMBOL" == "*" ]
+	then
+		(( RESULT *= NUMBER ))
+	fi
+			
+done <<< "$CONTENTS"
 
 echo $RESULT
 
