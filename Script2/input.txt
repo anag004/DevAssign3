@@ -1,4 +1,4 @@
-root:x:0:0:root:/root:/bin/bash
+root:0:0:root:/root:/bin/bash
 hplip:x:114:7:HPLIP system user,,,:/var/run/hplip:/bin/false
 pulse:x:115:122:PulseAudio daemon,,,:/var/run/pulse:/bin/false
 aman:x:1000:1000:Aman Agrawal,,,:/home/aman:/bin/bash

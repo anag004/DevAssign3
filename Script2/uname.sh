@@ -1,4 +1,6 @@
 #!/bin/bash
+# Retrieves the name of a user given their uname and a passwords.txt file
+# bash uname.sh <uname> <passwordFile>
 
 if [[ !( $# -eq 2 ) ]]
 then
