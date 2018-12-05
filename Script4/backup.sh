@@ -1,4 +1,5 @@
 #!/bin/bash
+# Takes two directories and copies files from each directory into the other which are not already present there
 
 CONTENTS=$( ls "$1" )
 
