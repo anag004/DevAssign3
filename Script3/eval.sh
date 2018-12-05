@@ -1,4 +1,5 @@
 #!/bin/bash
+# evaluates a mathematical expression specified in input.txt
 
 if [[ !( $# -eq 1 ) ]] || [[ !( -f $1 ) ]]
 then 
